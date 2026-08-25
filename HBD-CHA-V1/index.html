@@ -3892,5 +3892,29 @@ window.addEventListener('load', ()=> setTimeout(()=>launchConfetti(60), 2200));
       }
     }
   </style>
+  <style id="mobile-scroll-final">
+    html{overflow-y:auto !important;}
+
+    body.merged-body:not(.gate-locked):not(.secret-mode){
+      height:auto !important;
+      min-height:100vh !important;
+      overflow-x:hidden !important;
+      overflow-y:auto !important;
+      -webkit-overflow-scrolling:touch;
+    }
+
+    body.merged-body.gate-locked,
+    body.merged-body.secret-mode{
+      height:100% !important;
+      overflow:hidden !important;
+    }
+
+    @media (max-width:600px){
+      body.merged-body:not(.gate-locked):not(.secret-mode){
+        position:relative !important;
+        overscroll-behavior-y:auto;
+      }
+    }
+  </style>
 </body>
 </html>
