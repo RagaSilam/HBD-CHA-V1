@@ -1847,7 +1847,8 @@
 
   .merged-body {
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
   }
 
   #secret-view {
@@ -1855,7 +1856,17 @@
   }
 
   body.secret-mode {
-    overflow: hidden;
+    overflow: hidden !important;
+  }
+
+  body.gate-locked {
+    overflow: hidden !important;
+  }
+
+  body:not(.secret-mode):not(.gate-locked) {
+    overflow-x: hidden !important;
+    overflow-y: scroll !important;
+    -webkit-overflow-scrolling: touch;
   }
 
   .main-secret-entry {
@@ -2229,6 +2240,8 @@ entryGateButton.addEventListener('click',()=>{
   startTypewriter();
   startApologyTypewriter();
   document.body.classList.remove('gate-locked');
+  document.body.classList.remove('secret-mode');
+  document.body.style.overflowY='scroll';
   entryGate.classList.add('is-hidden');
   setTimeout(()=>entryGate.remove(),850);
 });
@@ -3180,6 +3193,7 @@ window.addEventListener('load', ()=> setTimeout(()=>launchConfetti(60), 2200));
     bgMusic.play().catch(function(e){ console.warn('Main music blocked:',e); });
     newAnimationView.classList.remove('visible');
     document.body.classList.remove('secret-mode');
+    document.body.style.overflowY='scroll';
   });
 
   </script>
